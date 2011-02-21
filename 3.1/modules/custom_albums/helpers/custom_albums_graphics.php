@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  */
 class custom_albums_graphics_Core {
-  static function build_thumb($input_file, $output_file, $options) {
-    $albumCustom = ORM::factory("custom_album")->where("album_id", "=", $options["parent_id"])->find();
+  static function build_thumb($input_file, $output_file, $options, $item) {
+    $albumCustom = ORM::factory("custom_album")->where("album_id", "=", $item->parent_id)->find();
 
     // If this album has custom data, build the thumbnail at the specified size
     if ($albumCustom->loaded()) {
@@ -27,10 +27,10 @@ class custom_albums_graphics_Core {
       $options["height"] = $albumCustom->thumb_size;
     }
 
-    gallery_graphics::resize($input_file, $output_file, $options);
+    gallery_graphics::resize($input_file, $output_file, $options, $item);
   }
   
-  static function build_resize($input_file, $output_file, $options) {
-    gallery_graphics::resize($input_file, $output_file, $options);
+  static function build_resize($input_file, $output_file, $options, $item) {
+    gallery_graphics::resize($input_file, $output_file, $options, $item);
   }
 }
