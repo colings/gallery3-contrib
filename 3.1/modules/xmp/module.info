@@ -1,0 +1,5 @@
+name = "XMP"
+description = "Import data from XMP Metadata, which is left by some photo editing 
+software such as Windows Live Photo Gallery. Requires at least the 'Tags' module, 
+and will use the 'Tagfaces' module if present. "
+version = 1
