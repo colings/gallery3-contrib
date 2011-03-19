@@ -29,8 +29,15 @@ class custom_albums_graphics_Core {
 
     gallery_graphics::resize($input_file, $output_file, $options, $item);
   }
-  
-  static function build_resize($input_file, $output_file, $options, $item) {
-    gallery_graphics::resize($input_file, $output_file, $options, $item);
+
+  static function thumb_size($item) {
+    $albumCustom = ORM::factory("custom_album")->where("album_id", "=", $item->id)->find();
+
+    // If this album has custom data, build the thumbnail at the specified size
+    if ($albumCustom->loaded()) {
+      return $albumCustom->thumb_size;
+    } else {
+      return 0;
+    }
   }
 }
