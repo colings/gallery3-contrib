@@ -17,5 +17,24 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  */
-class Videos_File_Model extends ORM {
+class tag_cloud_page_block_Core {
+  static function get_site_list() {
+    // Create a sidebar block to link to the cloud page.
+    return array("tag_cloud_page" => t("Tag Cloud Page Link"));
+  }
+
+  static function get($block_id, $theme) {
+    // Generate the sidebar block for linking to the tag cloud page.
+    $block = "";
+    switch ($block_id) {
+    case "tag_cloud_page":
+      $block = new Block();
+      $block->css_id = "g-tag-cloud-page";
+      $block->title = t("Tag Cloud");
+      $block->content = new View("tag_cloud_page_block.html");
+
+      break;
+    }
+    return $block;
+  }
 }
