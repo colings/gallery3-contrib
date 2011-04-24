@@ -84,4 +84,16 @@ class custom_albums_event_Core {
     // Update our resize rules, in case the thumbnail or resize size has changed
     custom_albums_installer::update_rules();
   }
+  
+  
+  static function theme_thumb_size($item) {
+    $albumCustom = ORM::factory("custom_album")->where("album_id", "=", $item->id)->find();
+
+    // If this album has custom data, build the thumbnail at the specified size
+    if ($albumCustom->loaded()) {
+      return $albumCustom->thumb_size;
+    } else {
+      return 0;
+    }
+  }
 }
